@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="/" />
+    <title>DynamoDB</title>
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body onload="generateAccessToken()">
+    <header>
+      <div id="logo">DynamoDB searches</div>
+      <nav>
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section>
+      <strong>Search on a Dynamodb table using SCAN</strong>
+    </section>
+    <section id="pageContent">
+      <main role="main">
+        <article>
+          <label for="txtTerm">Search text: </label>
+          <input id="txtTerm" type="text" required />
+          <button type="button" onclick="search('ff669132-eb43-4379-ac4f-78648a3c9fa8')">Search</button>
+        </article>
+        <table cellspacing="0">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Date</th>
+              <th>Topic</th>
+              <th>Body</th>
+            </tr>
+          </thead>
+          <tbody id="tblResult"></tbody>
+        </table>
+      </main>
+    </section>
+    <footer>
+      <p>&copy; edoswit</p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

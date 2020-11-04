@@ -1,4 +1,4 @@
-var api_gategay = "";
+var api_gategay = "URL_END_POINT_BASE";
 var access_token = "";
 var secuencial = 1;
 
@@ -11,7 +11,7 @@ function generateAccessToken() {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization:
-        "Basic ",
+        "Basic CREDENTIALS",
     },
     data: {
       grant_type: "client_credentials",
@@ -35,7 +35,7 @@ function search(lastEvaluatedKey) {
       "#topic": "topic",
       "#messageBackupID": "messageBackupID",
     },
-    TableName: "event-broker-events-qas",
+    TableName: "event-broker-events-*",
     ExpressionAttributeValues: { ":pBody": { S: term } },
     FilterExpression: "contains(#body, :pBody)",
   };
@@ -63,10 +63,13 @@ function search(lastEvaluatedKey) {
   $.ajax(settings).done(function (response) {
     if (response.Count === 0) {
       if (response.LastEvaluatedKey != null) {
-        console.log(secuencial + " /events/query", response.LastEvaluatedKey.ID.S);
+        console.log(
+          secuencial + " /events/query",
+          response.LastEvaluatedKey.ID.S
+        );
         setTimeout(() => {
           search(response.LastEvaluatedKey.ID.S);
-        }, 1500);
+        }, 1800);
       } else {
         console.log(secuencial + " /events/query", "Termino la busqueda.");
         print(response.items);
@@ -81,10 +84,9 @@ function search(lastEvaluatedKey) {
 
 function print(items) {
   $("#tblResult").empty();
-  if (items.length === 0) {
-    $("#tblResult").append(
-      "<tr><td colspan='4'>No se encontraron resultados.</td></tr>"
-    );
+  if (items) {
+    $("#codeResult").html("No se encontraron resultados");
   } else {
+    $("#codeResult").html(JSON.stringify(items));
   }
 }

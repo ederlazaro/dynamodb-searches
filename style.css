@@ -55,6 +55,9 @@ main {
     width: 100%;
 	/* width: 60%; */
 }
+main p {
+    margin: 20px;
+}
 /* aside {
 	float: right;
 	width: 30%;
